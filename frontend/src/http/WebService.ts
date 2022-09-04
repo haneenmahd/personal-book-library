@@ -6,11 +6,10 @@ export default class WebService {
 
   BASE_URL = "http://localhost:3001/api";
 
-  async get<T>(path: string, body?: any): Promise<T> {
+  async get<T>(path: string, query?: string): Promise<T> {
     const response = await (
-      await fetch(`${this.BASE_URL}${path}`, {
+      await fetch(`${this.BASE_URL}${path}?${query}`, {
         method: "GET",
-        body: body,
       })
     ).json();
 
@@ -60,5 +59,9 @@ export default class WebService {
 
   async deleteAllBooks(): Promise<HTTPResponse> {
     return await this.delete<HTTPResponse>("/deleteAll");
+  }
+
+  async searchForBooks(filter?: string): Promise<Book[]> {
+    return await this.get<Book[]>("/search", `title=${filter}`);
   }
 }

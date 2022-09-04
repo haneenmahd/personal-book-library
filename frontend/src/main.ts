@@ -21,6 +21,13 @@ const bookInfoModalDescription = document.getElementById(
 )!;
 const bookInfoModalAuthor = document.getElementById("book-info-modal-author")!;
 
+const searchBookInput =
+  document.querySelector<HTMLInputElement>("#search-book-input")!;
+
+searchBookInput.addEventListener("change", (e) => {
+  loadBooks((e.target as HTMLInputElement).value);
+});
+
 newBook.onclick = () => {
   modal.classList.add("visible");
 };
@@ -51,28 +58,50 @@ publishBook.onclick = async () => {
   modal.classList.remove("visible");
 };
 
-function loadBooks() {
+function loadBooks(filter?: string) {
   booksList.innerHTML = "";
 
-  WebService.shared.getBooks().then((data) => {
-    data.map((book) => {
-      const listElement = document.createElement("li");
+  if (!filter) {
+    WebService.shared.getBooks().then((data) => {
+      data.map((book) => {
+        const listElement = document.createElement("li");
 
-      listElement.onclick = () => {
-        openInfoModal(book);
-      };
+        listElement.onclick = () => {
+          openInfoModal(book);
+        };
 
-      listElement.innerHTML = `
+        listElement.innerHTML = `
               <h3>${book.title}</h3>
               <p>${book.description}</p>
 
               <span> ~ ${book.author}</span>`;
 
-      booksList.appendChild(listElement);
-    });
+        booksList.appendChild(listElement);
+      });
 
-    booksCount.innerText = data.length.toString();
-  });
+      booksCount.innerText = data.length.toString();
+    });
+  } else {
+    WebService.shared.searchForBooks(filter).then((data) => {
+      data.map((book) => {
+        const listElement = document.createElement("li");
+
+        listElement.onclick = () => {
+          openInfoModal(book);
+        };
+
+        listElement.innerHTML = `
+              <h3>${book.title}</h3>
+              <p>${book.description}</p>
+
+              <span> ~ ${book.author}</span>`;
+
+        booksList.appendChild(listElement);
+      });
+
+      booksCount.innerText = data.length.toString();
+    });
+  }
 }
 
 clearBooksBtn.onclick = () => {
