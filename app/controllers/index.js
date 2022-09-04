@@ -139,7 +139,7 @@ exports.deleteAll = (req, res) => {
  * @param {import("express").Response} res
  */
 exports.searchForBook = (req, res) => {
-  const { title } = req.body;
+  const { title } = req.query;
 
   Book.find({
     title: {
