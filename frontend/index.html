@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Personal Book Library</title>
+</head>
+
+<body>
+  <div id="app">
+    <div class="hero">
+      <h1>Your Book Library ❤️</h1>
+      <p>Contains <span id="book-count"></span> books</p>
+    </div>
+
+    <div id="main">
+      <header>
+        <nav>
+          <input type="text" placeholder="Search for any book">
+
+          <div id="layout-tab">
+            <div class="grid-layout-tab"></div>
+            <div class="compact-layout-tab"></div>
+          </div>
+
+          <button id="new-book">
+            New
+          </button>
+
+          <button id="clear-books">
+            Clear
+          </button>
+        </nav>
+      </header>
+
+      <ul id="books-list">
+      </ul>
+
+    </div>
+
+    <footer>
+      <p>Created by Haneen Mahdin</p>
+    </footer>
+  </div>
+
+  <div id="modal" class="modal">
+    <input id="book-title" type="text" placeholder="Title">
+    <textarea id="book-description" type="text" placeholder="Description"></textarea>
+    <input id="book-author" type="text" placeholder="Author">
+
+    <button id="publish-book">Publish</button>
+  </div>
+
+  <div id="book-info-modal" class="modal">
+    <h1 id="book-info-modal-title"></h1>
+    <p id="book-info-modal-description"></p>
+
+    <span>~ <span id="book-info-modal-author"></span></span>
+  </div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>

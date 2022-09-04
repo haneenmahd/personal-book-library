@@ -1,0 +1,365 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+*::selection {
+  transition: background-color 300ms;
+  background-color: #2c3e5010;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.modal {
+  opacity: 0;
+  z-index: 0;
+  scale: 0.92;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 500px;
+  width: 500px;
+  padding: 2rem;
+  border: 1px solid #1b476d39;
+  border-radius: 1rem;
+  background-color: white;
+  box-shadow: 0 0 0 100vh #55555530;
+  transition: opacity 200ms ease-in-out, z-index 200ms ease-in-out, scale 200ms ease-in-out;
+}
+
+.modal.loading {
+  animation: blink 1s ease-in infinite;
+}
+
+.modal.visible {
+  scale: 1;
+  opacity: 1;
+  z-index: 1000;
+}
+
+@media screen and (max-width: 600px) {
+  .modal {
+    height: 90vh;
+    width: 100vw;
+  }
+}
+
+.modal>* {
+  margin: 1rem 0;
+}
+
+.modal button {
+  color: #fff;
+  background: rgb(89, 168, 243);
+}
+
+.modal button:hover {
+  background: rgb(33, 103, 170);
+}
+
+.modal input,
+.modal textarea {
+  color: #37536e;
+}
+
+#app {
+  cursor: default;
+  position: relative;
+  margin-top: 60px;
+  margin: 0;
+  padding: 0;
+}
+
+#app .hero {
+  position: -webkit-sticky;
+  position: sticky;
+  top: -80px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: -1;
+}
+
+#app .hero h1 {
+  font-size: 150%;
+  margin: 0.5rem 0;
+}
+
+#app .hero p {
+  color: #37536e;
+}
+
+#main {
+  border-radius: 50px;
+  width: 100vw;
+  background-color: #eee;
+  margin: 0;
+  padding: 1rem 0;
+  box-shadow: 0 0 20px 0 #37536e53;
+}
+
+header {
+  position: sticky;
+  top: 50px;
+  z-index: 100;
+}
+
+nav {
+  position: relative;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1.5rem;
+  z-index: 2;
+}
+
+nav>* {
+  margin: 0 0.2rem;
+}
+
+@media screen and (max-width: 500px) {
+  nav input:focus {
+    position: absolute;
+    z-index: 100;
+    width: 80%;
+    scale: 1.05;
+    box-shadow: 0 20px 50px 0 #16263437;
+    -webkit-box-shadow: 0 20px 50px 0 #16263437;
+  }
+
+  button {
+    font-size: 0.9rem;
+  }
+
+  nav>* {
+    margin: 0.1rem;
+  }
+}
+
+input {
+  height: 50px;
+  width: 100%;
+  border-radius: 2rem;
+  background: rgba(64, 96, 125, 0.1);
+  color: rgba(64, 96, 125, 0.6);
+  border: none;
+  padding: 0;
+  padding-left: 2rem;
+  padding-right: 0rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  outline: none;
+  backdrop-filter: blur(60px);
+  -webkit-backdrop-filter: blur(60px);
+  transition: box-shadow ease-in-out 200ms, padding-right ease-in-out 200ms;
+}
+
+
+input::placeholder {
+  color: rgba(64, 96, 125, 0.6);
+  overflow: hidden;
+  transition: color 200ms ease-in-out;
+}
+
+input:focus {
+  padding-right: 2rem;
+}
+
+input:focus::placeholder {
+  color: rgba(64, 96, 125, 0.5);
+}
+
+textarea {
+  height: 180px;
+  width: 100%;
+  border-radius: 2rem;
+  background: rgba(64, 96, 125, 0.1);
+  color: rgba(64, 96, 125, 0.6);
+  border: none;
+  padding: 2rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  outline: none;
+  backdrop-filter: blur(60px);
+  -webkit-backdrop-filter: blur(60px);
+  transition: box-shadow ease-in-out 200ms, padding-right ease-in-out 200ms;
+  resize: none;
+}
+
+
+textarea::placeholder {
+  color: rgba(64, 96, 125, 0.6);
+  overflow: hidden;
+  transition: color 200ms ease-in-out;
+}
+
+textarea:focus {
+  padding-right: 2rem;
+}
+
+textarea:focus::placeholder {
+  color: rgba(64, 96, 125, 0.5);
+}
+
+
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  height: 50px;
+  min-width: 50px;
+  border-radius: 2rem;
+  background: rgba(136, 181, 222, 0.1);
+  color: rgba(74, 109, 142, 0.8);
+  border: none;
+  padding: 0 2rem;
+  font-size: 1.05rem;
+  font-weight: bolder;
+  outline: none;
+  backdrop-filter: blur(60px);
+  -webkit-backdrop-filter: blur(60px);
+  transition: background ease-in-out 200ms, scale ease-in-out 200ms;
+}
+
+button:hover {
+  background: rgba(136, 181, 222, 0.2);
+}
+
+button:active {
+  scale: 0.95;
+}
+
+button svg {
+  height: 30px;
+  width: 30px;
+}
+
+button svg {
+  height: 100px;
+  width: 100px;
+}
+
+button svg path {
+  fill: #2c3e50;
+}
+
+button svg polyline {
+  stroke: #2c3e50;
+}
+
+ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 10px;
+  list-style: none;
+}
+
+ul[layout="compact"] {
+  grid-template-columns: 1fr;
+}
+
+@media screen and (max-width: 700px) {
+  ul {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  ul {
+    grid-template-columns: 1fr;
+  }
+}
+
+ul li {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  align-items: flex-start;
+  max-width: 100vw / 3;
+  height: auto;
+  text-align: left;
+  margin: 1rem 1rem;
+  padding: 1.5rem;
+  border: 1px solid transparent;
+  border-radius: 30px;
+  cursor: pointer;
+  z-index: 1;
+  transition: ease-in-out 200ms;
+}
+
+ul li:hover {
+  border: 1px solid #37536e50;
+  box-shadow: 0 0 20px 0 #37536e23;
+  scale: 0.98;
+}
+
+ul li:active {
+  scale: 0.93;
+}
+
+ul li>* {
+  margin: 0.3rem 0;
+}
+
+ul li p {
+  color: #4a6784;
+}
+
+ul li span {
+  font-size: 0.9rem;
+  font-weight: bolder;
+}
+
+footer {
+  color: #557899;
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  z-index: -1;
+}
+
+#book-info-modal {
+  padding: 1.5rem;
+  text-align: left;
+  max-width: 80vw;
+  max-height: 50vh;
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+#book-info-modal #book-info-modal-title {
+  font-size: 150%;
+}
+
+#book-info-modal #book-info-modal-description {
+  font-size: 100%;
+  color: rgba(64, 96, 125, 1);
+}
+
+#book-info-modal span {
+  font-weight: 500;
+  color: rgb(72, 121, 167);
+}
