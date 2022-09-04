@@ -125,10 +125,41 @@ exports.deleteAll = (req, res) => {
   Book.deleteMany({})
     .then((data) => {
       if (!data) {
-        res.status(203).send({
+        res.status(403).send({
           message: "Failed to delete all contents from the books",
         });
       }
     })
     .catch((err) => {});
+};
+
+/**
+ *
+ * @param {import("express").Request} req
+ * @param {import("express").Response} res
+ */
+exports.searchForBook = (req, res) => {
+  const { title } = req.body;
+
+  Book.find({
+    title: {
+      $regex: new RegExp(title, "i"),
+    },
+  })
+    .then((data) => {
+      if (!data) {
+        res.status(403).send({
+          message: `Cannot find book with title: ${title}`,
+        });
+      } else {
+        res.status(200).send(data);
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: "An internal error occured while searching for the book.",
+      });
+
+      writeDebugLogs(err);
+    });
 };

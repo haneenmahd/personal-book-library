@@ -18,5 +18,7 @@ module.exports = function (app) {
 
   router.delete("/deleteAll", controller.deleteAll);
 
+  router.get("/search", controller.searchForBook);
+
   app.use("/api", router);
 };
