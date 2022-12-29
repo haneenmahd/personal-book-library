@@ -1,5 +1,3 @@
-<img alt="Personal Book Library" src="https://user-images.githubusercontent.com/72091386/188305350-2bf5f825-30ec-4805-b45b-476aaadd1c26.png">
-
 # personal-book-library
 
 A personal library to store all your progress on reading books. Built using Express.js, Vite. It also comes with a simple logging utility that logs errors happened inside the server.
