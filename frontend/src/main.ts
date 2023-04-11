@@ -32,6 +32,11 @@ newBook.onclick = () => {
   modal.classList.add("visible");
 };
 
+clearBooksBtn.onclick = () => {
+  WebService.shared.deleteAllBooks();
+  loadBooks()
+};
+
 window.onkeydown = (e) => {
   if (e.key === "Escape") {
     modal.classList.remove("visible");
@@ -56,6 +61,17 @@ publishBook.onclick = async () => {
   loadBooks();
 
   modal.classList.remove("visible");
+
+  const inputElements = document.querySelectorAll("input");
+  const textAreaElements = document.querySelectorAll("textarea");
+
+  inputElements.forEach(el => {
+    el.value = "";
+  })
+
+  textAreaElements.forEach(el => {
+    el.value = "";
+  })
 };
 
 function loadBooks(filter?: string) {
@@ -72,9 +88,7 @@ function loadBooks(filter?: string) {
 
         listElement.innerHTML = `
               <h3>${book.title}</h3>
-              <p>${book.description}</p>
-
-              <span> ~ ${book.author}</span>`;
+              <span>${book.author}</span>`;
 
         booksList.appendChild(listElement);
       });
@@ -92,9 +106,7 @@ function loadBooks(filter?: string) {
 
         listElement.innerHTML = `
               <h3>${book.title}</h3>
-              <p>${book.description}</p>
-
-              <span> ~ ${book.author}</span>`;
+              <span>${book.author}</span>`;
 
         booksList.appendChild(listElement);
       });
@@ -103,12 +115,6 @@ function loadBooks(filter?: string) {
     });
   }
 }
-
-clearBooksBtn.onclick = () => {
-  WebService.shared.deleteAllBooks();
-
-  loadBooks();
-};
 
 window.onload = () => {
   loadBooks();
