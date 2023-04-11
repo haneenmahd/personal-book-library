@@ -72,9 +72,7 @@ function loadBooks(filter?: string) {
 
         listElement.innerHTML = `
               <h3>${book.title}</h3>
-              <p>${book.description}</p>
-
-              <span> ~ ${book.author}</span>`;
+              <span>${book.author}</span>`;
 
         booksList.appendChild(listElement);
       });
@@ -92,9 +90,7 @@ function loadBooks(filter?: string) {
 
         listElement.innerHTML = `
               <h3>${book.title}</h3>
-              <p>${book.description}</p>
-
-              <span> ~ ${book.author}</span>`;
+              <span>${book.author}</span>`;
 
         booksList.appendChild(listElement);
       });
