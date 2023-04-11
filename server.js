@@ -1,8 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const db = require("./app/models");
-const configureRoutes = require("./app/routes");
+const db = require("./backend/models");
+const configureRoutes = require("./backend/routes");
 const { writeDebugLogs } = require("./utils/writeDebugLogs");
 
 const app = express();
