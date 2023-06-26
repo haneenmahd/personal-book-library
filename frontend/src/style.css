@@ -157,41 +157,39 @@ nav input:focus {
 input {
   height: 36px;
   border-radius: 8px;
-  background: rgb(55, 55, 55);
+  background: transparent;
   color: rgba(255, 255, 255, 1);
   padding: 0;
   padding-left: 0.8rem;
   padding-right: 1.5rem;
   font-size: 16px;
   outline: none;
-  border: 1px solid transparent;
+  border: 1px solid #70707039;
   transition: border 100ms, background-color 150ms;
 }
 
 input:focus {
-  background-color: transparent;
-  border-color: #70707039;
+  background-color: rgb(55, 55, 55);
 }
 
 textarea {
   min-height: 100px;
   width: 100%;
   border-radius: 8px;
-  background: rgb(55, 55, 55);
+  background: transparent;
   color: rgba(255, 255, 255, 1);
   border: none;
   padding: 0.8rem;
   font-size: 16px;
   outline: none;
   resize: none;
-  border: 1px solid transparent;
+  border: 1px solid #70707039;
   scroll-padding-bottom: 1rem;
   transition: border 100ms, background-color 150ms;
 }
 
 textarea:focus {
-  background-color: transparent;
-  border-color: #70707039;
+  background-color: rgb(55, 55, 55);
 }
 
 button {
